@@ -20,6 +20,8 @@ STOCKS = [
     "EREGL.IS", "BIMAS.IS", "TUPRS.IS", "AKBNK.IS", "YKBNK.IS",
     "SASA.IS", "PETKM.IS", "KOZAL.IS", "TCELL.IS", "ARCLK.IS",
     "FROTO.IS", "TOASO.IS", "PGSUS.IS", "HALKB.IS", "ISCTR.IS",
+    "BETAE.IS", "ORZAX.IS", "BIGEN.IS", "ALFAS.IS", "NETCD.IS",
+    "DSTKF.IS", "IHAAS.IS", "TERA.IS", "KTLEV.IS", "ASTOR.IS",
     # ... kendi listenle tamamla (20-30 arasi onerilir)
 ]
 
