@@ -1,0 +1,35 @@
+name: BIST verisi guncelle
+
+on:
+  schedule:
+    # Pazartesi-Cuma, 06:00-17:00 UTC arasi 15 dakikada bir
+    # (Turkiye saatiyle yaklasik 09:00-20:00, BIST islem saatlerini kapsar)
+    - cron: "*/15 6-17 * * 1-5"
+  workflow_dispatch: {}   # istersen Actions sekmesinden elle de calistirabilirsin
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Bagimliliklari kur
+        run: pip install yfinance
+
+      - name: Veriyi cek
+        run: python fetch_bist.py
+
+      - name: Degisiklik varsa commitle ve pushla
+        run: |
+          git config user.name "bist-bot"
+          git config user.email "bist-bot@users.noreply.github.com"
+          git add bist_data.json
+          git diff --staged --quiet || git commit -m "veri guncelle $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
